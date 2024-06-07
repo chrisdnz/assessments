@@ -6,6 +6,11 @@ export const dashboardConfig = {
       icon: "home",
     },
     {
+      title: "Tests",
+      href: "/dashboard/tests",
+      icon: "bookopen",
+    },
+    {
       title: "Settings",
       href: "/dashboard/settings",
       icon: "settings",

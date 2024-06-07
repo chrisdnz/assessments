@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import {
   AlertTriangle,
   ArrowRight,
+  BookOpen,
   Cable,
   Check,
   ChevronLeft,
@@ -13,6 +14,8 @@ import {
   Home,
   Image,
   Laptop,
+  ListChecks,
+  ListTodo,
   Loader2,
   Moon,
   MoreVertical,
@@ -70,5 +73,8 @@ export const Icons = {
   home: Home,
   addUser: UserPlus,
   cable: Cable,
-  plug: Unplug
+  plug: Unplug,
+  bookopen: BookOpen,
+  singlechoice: ListTodo,
+  multiplechoice: ListChecks
 };
