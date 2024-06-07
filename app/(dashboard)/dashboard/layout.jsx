@@ -33,7 +33,7 @@ export default async function DashboardLayout({ children }) {
           <DashboardNav items={dashboardConfig.sidebarNav} />
           <UserAccountNav user={data?.session?.user} signOut={signOut} />
         </aside>
-        <main className="w-full flex flex-col">
+        <main className="w-full flex-1 flex flex-col">
           {children}
         </main>
       </div>

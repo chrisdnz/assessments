@@ -19,7 +19,7 @@ export default function ProfileForm() {
     resolver: zodResolver(userProfileSchema),
   });
   return (
-    <>
+    <div className="w-full">
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit}>
@@ -30,7 +30,7 @@ export default function ProfileForm() {
                 <FormItem>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input className="w-[400px]" {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -43,6 +43,6 @@ export default function ProfileForm() {
             Save Changes
         </Button>
       </CardFooter>
-    </>
+    </div>
   );
 }

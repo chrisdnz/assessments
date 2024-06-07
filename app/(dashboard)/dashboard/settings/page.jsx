@@ -25,7 +25,7 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-1 flex-col gap-4">
       <Card>
         <CardHeader>
           <CardTitle>Profile Settings</CardTitle>
