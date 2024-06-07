@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int        @id @default(autoincrement())
+  email       String     @unique
+  name        String?
+  role        Role?       @default(COMPANY)
+  candidate   Candidate?
+  company     Company?
+
+  @@index([role])
+}
+
+model Candidate {
+  id          Int        @id @default(autoincrement())
+  userId      Int        @unique
+  user        User       @relation(fields: [userId], references: [id])
+  assessments Assessment[]
+
+  @@index([userId])
+}
+
+model Company {
+  id           Int          @id @default(autoincrement())
+  userId       Int          @unique
+  user         User         @relation(fields: [userId], references: [id])
+  name         String?
+  assessments  Assessment[]
+
+  @@index([userId])
+}
+
+model Assessment {
+  id          Int          @id @default(autoincrement())
+  title       String
+  companyId   Int
+  company     Company      @relation(fields: [companyId], references: [id])
+  candidateId Int?
+  candidate   Candidate?   @relation(fields: [candidateId], references: [id])
+  tests       Test[]
+
+  @@index([companyId])
+  @@index([candidateId])
+}
+
+model Test {
+  id            Int        @id @default(autoincrement())
+  title         String
+  assessmentId  Int
+  assessment    Assessment @relation(fields: [assessmentId], references: [id])
+  questions     Question[]
+
+  @@index([assessmentId])
+}
+
+model Question {
+  id        Int       @id @default(autoincrement())
+  text      String
+  testId    Int
+  test      Test      @relation(fields: [testId], references: [id])
+  answers   Answer[]
+
+  @@index([testId])
+}
+
+model Answer {
+  id         Int       @id @default(autoincrement())
+  text       String
+  correct    Boolean   @default(false)
+  questionId Int
+  question   Question  @relation(fields: [questionId], references: [id])
+
+  @@index([questionId])
+}
+
+enum Role {
+  CANDIDATE
+  COMPANY
+}
